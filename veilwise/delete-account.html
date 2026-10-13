@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Delete your account – Veilwise</title>
+<meta name="color-scheme" content="light dark">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="index.html">Veilwise</a>
+    <nav class="site">
+      <a href="privacy.html">Privacy</a>
+      <a href="terms.html">Terms</a>
+      <a href="delete-account.html">Delete account</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <h1>Delete your Veilwise account</h1>
+    <p class="lead">You can delete your Veilwise account here without opening the app. Deletion is immediate and cannot be undone.</p>
+
+    <h2>What is deleted</h2>
+    <ul>
+      <li><strong>Right away:</strong> your account (email address, name and hashed password). You are removed from your wedding.</li>
+      <li><strong>If you were the only member of the wedding:</strong> the wedding and all of its events, vendors, payments, guests and notes are deleted right away too.</li>
+      <li><strong>If other members are still in the wedding:</strong> the shared wedding data stays available to them, because it is also their record. They can delete it by deleting their own accounts or removing items in the app.</li>
+      <li><strong>Receipt and quote photos:</strong> we never stored them. They are read on your phone only.</li>
+      <li><strong>Payment reminders</strong> live on your phone. Signing out cancels them; you can also uninstall the app.</li>
+      <li><strong>Purchase records:</strong> Google Play and RevenueCat keep purchase records under their own policies (for example for tax and fraud prevention). Contact us (see below) if you want us to request deletion of the RevenueCat record. Details are in our <a href="privacy.html#retention">privacy policy</a>.</li>
+    </ul>
+
+    <h2>Delete with your email and password</h2>
+    <form id="delete-form" class="stack card" novalidate>
+      <div>
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" autocomplete="email" required>
+      </div>
+      <div>
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password" autocomplete="current-password" required minlength="8" maxlength="128">
+      </div>
+      <label class="check"><input id="confirm" type="checkbox" required> I understand my account will be deleted immediately and permanently.</label>
+      <div>
+        <button id="submit" class="btn danger" type="submit">Delete my account</button>
+      </div>
+      <p id="status" class="status" role="status" aria-live="polite" hidden></p>
+    </form>
+
+    <h2>Can’t sign in?</h2>
+    <p>Veilwise does not have a password reset yet. If you are still signed in on a phone, open the app and go to <strong>Settings → Account → Delete account</strong>. Otherwise open an issue at <a href="https://github.com/sangamyo/app-sites/issues">github.com/sangamyo/app-sites/issues</a> titled “Veilwise account deletion”. Do not post your email address or any other personal details there. We will reply on the issue with a private way to confirm the account is yours, then delete it as described above, usually within 30 days.</p>
+  </div>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <a href="index.html">Home</a>
+    <a href="privacy.html">Privacy policy</a>
+    <a href="terms.html">Terms of use</a>
+  </div>
+</footer>
+
+<script>
+  const API_URL = 'https://wedding-api.onrender.com';
+
+  (function () {
+    const form = document.getElementById('delete-form');
+    const statusEl = document.getElementById('status');
+    const button = document.getElementById('submit');
+
+    function show(kind, text) {
+      statusEl.className = 'status ' + kind;
+      statusEl.textContent = text;
+      statusEl.hidden = false;
+    }
+
+    form.addEventListener('submit', async function (event) {
+      event.preventDefault();
+      const email = form.email.value.trim().toLowerCase();
+      const password = form.password.value;
+
+      if (!email || !form.email.checkValidity()) return show('err', 'Please enter a valid email address.');
+      if (password.length < 8) return show('err', 'Please enter your password (at least 8 characters).');
+      if (!document.getElementById('confirm').checked) return show('err', 'Please tick the box to confirm you want to delete your account.');
+
+      button.disabled = true;
+      button.textContent = 'Deleting…';
+      statusEl.hidden = true;
+
+      try {
+        const res = await fetch(API_URL + '/v1/account/delete-request', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: email, password: password })
+        });
+
+        if (res.status === 204) {
+          form.reset();
+          Array.prototype.forEach.call(form.querySelectorAll('input, button'), function (el) { el.disabled = true; });
+          button.textContent = 'Deleted';
+          show('ok', 'Your account has been deleted.');
+          return;
+        }
+
+        let message = '';
+        try { const body = await res.json(); message = body && body.error && body.error.message || ''; } catch (e) { }
+
+        if (res.status === 401) {
+          show('err', 'That email and password don’t match an account. Check them and try again, or see “Can’t sign in?” below.');
+        } else if (res.status === 429) {
+          show('err', 'Too many attempts. Please wait about 15 minutes and try again.');
+        } else if (res.status === 400) {
+          show('err', 'Please check your email and password. ' + message);
+        } else {
+          show('err', 'Something went wrong on our side (error ' + res.status + '). Please try again later.');
+        }
+      } catch (e) {
+        show('err', 'Could not reach our server. Check your connection and try again, or see “Can’t sign in?” below.');
+      }
+
+      button.disabled = false;
+      button.textContent = 'Delete my account';
+    });
+  })();
+</script>
+</body>
+</html>
