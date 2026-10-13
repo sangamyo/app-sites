@@ -32,8 +32,9 @@ Pailbook (daily milk record and milk bill) has its own site: https://sangamyo.gi
 2. Repo → **Settings → Pages** → Source: *Deploy from a branch* → branch `main`, folder `/ (root)` → Save.
 3. After a minute the site is live at https://sangamyo.github.io/app-sites/.
 
-The account-deletion pages of Duo Budget, Veilwise, Swaddle Sync, Hearthpool and CareNotes send a request
-from the browser to that app's API, so each API's `CORS_ORIGINS` setting must include
+The account-deletion pages of Duo Budget, Veilwise, Swaddle Sync, Hearthpool and CareNotes have no form and
+call no API: they give the in-app steps and, for people who can't sign in, ask them to open an issue here
+without posting personal details. Each API's `CORS_ORIGINS` setting should still include
 `https://sangamyo.github.io` (origin only, no path).
 
 ## Source
