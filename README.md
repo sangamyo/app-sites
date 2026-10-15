@@ -12,6 +12,7 @@ addresses, phone numbers, your records).
 
 | App | Folder | Home | Privacy policy | Deletion page | Google Play |
 |---|---|---|---|---|---|
+| Whisker Grid | `whiskergrid/` | [home](https://sangamyo.github.io/app-sites/whiskergrid/) | [privacy](https://sangamyo.github.io/app-sites/whiskergrid/privacy.html) | none (no account, no data leaves the device) | [com.linuxpro.whiskergrid](https://play.google.com/store/apps/details?id=com.linuxpro.whiskergrid) |
 | Duo Budget | `duo-budget/` | [home](https://sangamyo.github.io/app-sites/duo-budget/) | [privacy](https://sangamyo.github.io/app-sites/duo-budget/privacy.html) | [delete account](https://sangamyo.github.io/app-sites/duo-budget/delete-account.html) | [com.hariomkasaundhan.duobudget](https://play.google.com/store/apps/details?id=com.hariomkasaundhan.duobudget) |
 | Veilwise | `veilwise/` | [home](https://sangamyo.github.io/app-sites/veilwise/) | [privacy](https://sangamyo.github.io/app-sites/veilwise/privacy.html) | [delete account](https://sangamyo.github.io/app-sites/veilwise/delete-account.html) | [com.hariomkasaundhan.vowbudget](https://play.google.com/store/apps/details?id=com.hariomkasaundhan.vowbudget) |
 | Swaddle Sync | `swaddle-sync/` | [home](https://sangamyo.github.io/app-sites/swaddle-sync/) | [privacy](https://sangamyo.github.io/app-sites/swaddle-sync/privacy.html) | [delete account](https://sangamyo.github.io/app-sites/swaddle-sync/delete-account.html) | [com.hariomkasaundhan.tandembaby](https://play.google.com/store/apps/details?id=com.hariomkasaundhan.tandembaby) |

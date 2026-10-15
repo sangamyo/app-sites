@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Whisker Grid</title>
+  <meta name="description" content="Whisker Grid: three cat logic puzzles for iPhone and Android. One cat per row, column and color. No ads, no subscriptions, no guessing." />
+  <meta property="og:title" content="Whisker Grid: Cat Logic Puzzles" />
+  <meta property="og:description" content="Three cat logic puzzles. Daily puzzles, hints that teach, no ads." />
+  <meta property="og:image" content="feature.png" />
+  <link rel="icon" href="icon.png" />
+  <style>
+    :root {
+      --bg: #FFF8EF; --card: #FFFFFF; --text: #3B2F2F; --muted: #8C7B75; --line: #EADFD3;
+      --primary: #F28C38; --primary-dark: #C96B1E; --accent: #5BB5A2; --accent-dark: #3E8F7F;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--bg); color: var(--text); font-family: "Segoe UI", -apple-system, system-ui, Helvetica, Arial, sans-serif; line-height: 1.5; }
+    main { max-width: 960px; margin: 0 auto; padding: 24px 16px 64px; }
+    header { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+    header img { width: 96px; height: 96px; border-radius: 22px; }
+    h1 { font-size: 40px; margin: 0; }
+    .tagline { color: var(--muted); font-size: 18px; margin: 4px 0 0; }
+    .stores { display: flex; gap: 12px; flex-wrap: wrap; margin: 24px 0 8px; }
+    .btn { display: inline-block; padding: 14px 22px; border-radius: 16px; font-weight: 700; text-decoration: none; color: #fff; background: var(--primary); border-bottom: 4px solid var(--primary-dark); }
+    .btn.alt { background: var(--accent); border-bottom-color: var(--accent-dark); }
+    .btn.ghost { background: var(--card); color: var(--text); border: 1px solid var(--line); border-bottom-width: 4px; }
+    .note { color: var(--muted); font-size: 14px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-top: 32px; }
+    .card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 18px; }
+    .card h3 { margin: 0 0 6px; font-size: 18px; }
+    .card p { margin: 0; color: var(--muted); font-size: 15px; }
+    .shots { display: flex; gap: 12px; overflow-x: auto; padding: 8px 0 16px; margin-top: 24px; }
+    .shots img { height: 420px; border-radius: 18px; border: 1px solid var(--line); background: #fff; }
+    .signup { margin-top: 40px; background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 20px; }
+    .signup input { padding: 12px; border: 1px solid var(--line); border-radius: 12px; font-size: 16px; width: 100%; max-width: 320px; }
+    .signup button { padding: 12px 18px; border: 0; border-radius: 12px; background: var(--primary); color: #fff; font-weight: 700; font-size: 16px; cursor: pointer; }
+    footer { margin-top: 48px; color: var(--muted); font-size: 14px; display: flex; gap: 16px; flex-wrap: wrap; }
+    footer a { color: var(--muted); }
+    @media (max-width: 600px) { h1 { font-size: 32px; } .shots img { height: 340px; } }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <img src="icon.png" alt="Whisker Grid icon: an orange cat face" />
+      <div>
+        <h1>Whisker Grid</h1>
+        <p class="tagline">Three cat logic puzzles. No guessing, no ads.</p>
+      </div>
+    </header>
+
+    <div class="stores">
+      <a class="btn alt" href="https://play.google.com/store/apps/details?id=com.linuxpro.whiskergrid">Get it on Google Play</a>
+    </div>
+    <p class="note">Free. Works offline. No account needed.</p>
+
+    <div class="shots">
+      <!-- Drop your screenshots in site/shots/ and update these paths -->
+      <img src="shots/1.png" alt="A half-solved Whisker Grid board" />
+      <img src="shots/2.png" alt="A hint explaining the next logical step" />
+      <img src="shots/3.png" alt="A Cat and Fish puzzle" />
+      <img src="shots/4.png" alt="Daily puzzles and streak" />
+    </div>
+
+    <div class="grid">
+      <div class="card"><h3>Whisker Grid</h3><p>Place one cat in every row, column and colored region. Cats never touch. 240 levels from a gentle 5×5 to a brain-bending 10×10.</p></div>
+      <div class="card"><h3>Cat &amp; Fish</h3><p>Balance cats and fish in every line, never three in a row, and respect the = and × markers. 120 levels.</p></div>
+      <div class="card"><h3>Hidden Cats</h3><p>Numbers count the cats in the squares around them. Find every cat without guessing. 72 levels.</p></div>
+      <div class="card"><h3>Hints that teach</h3><p>A hint highlights the squares that matter and explains the logic, so the next puzzle gets easier.</p></div>
+      <div class="card"><h3>Three daily puzzles</h3><p>Fresh every day. Keep your streak and share your time with friends.</p></div>
+      <div class="card"><h3>Your pace</h3><p>Classic mode with three hearts, or Relaxed mode with no hearts and gentle highlighting.</p></div>
+      <div class="card"><h3>Nothing in the way</h3><p>No ads, no subscriptions, no accounts, no tracking. Every puzzle has exactly one solution.</p></div>
+    </div>
+
+    <div class="signup">
+      <h3 style="margin:0 0 6px">Puzzle of the week in your inbox</h3>
+      <p class="note" style="margin:0 0 12px">One email a week: a puzzle, a solving tip, and what's new. Unsubscribe anytime.</p>
+      <!-- Point this form at your email tool (Buttondown, MailerLite, Beehiiv all provide a form action URL) -->
+      <form action="#" method="post" style="display:flex; gap:10px; flex-wrap:wrap">
+        <input type="email" name="email" placeholder="you@example.com" required />
+        <button type="submit">Subscribe</button>
+      </form>
+    </div>
+
+    <footer>
+      <a href="privacy.html">Privacy policy</a>
+      <span>Contact: sangamgupta988@gmail.com</span>
+      <span>© 2026 Whisker Grid</span>
+    </footer>
+  </main>
+</body>
+</html>
